@@ -1,0 +1,15 @@
+.body {
+    background-image: url("../assets/backgrounds/jungle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #457131;
+    margin: 0;
+}
+
+.overlay {
+    background-color: #000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    opacity: 15%;
+}
