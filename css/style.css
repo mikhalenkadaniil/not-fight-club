@@ -4,6 +4,9 @@
     background-repeat: no-repeat;
     background-color: #457131;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .overlay {
@@ -12,4 +15,49 @@
     height: 100%;
     width: 100%;
     opacity: 15%;
+    pointer-events: none;
+}
+
+.icons {
+    width: 40px;
+    height: 40px;
+}
+
+.nav__element {
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 40px;
+    margin-right: 40px;
+    cursor: pointer;
+    fill: #fff;
+    transition: 0.5s;
+}
+
+.nav__element:hover {
+    fill: #999;
+    transform: scale(1.2);
+}
+
+.nav__element:active {
+    fill: #000;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    height: 100px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
 }
