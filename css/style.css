@@ -178,3 +178,18 @@ ul {
 .fightBtn:active {
     opacity: 100%;
 }
+
+.logo {
+    display: flex;
+    text-align: center;
+}
+
+.logo__text {
+    color: #fff;
+    font-size: 35px;
+    margin-left: 5px;
+}
+
+.logo__icon {
+    fill: #fff;
+}
