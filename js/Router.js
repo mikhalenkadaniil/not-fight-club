@@ -1,4 +1,5 @@
 import CharacterPage from "./CharacterPage.js";
+import SettingsPage from "./SettingsPage.js";
 
 const logo = document.getElementById('logoText')
 const homePage = document.querySelector('.homepage')
@@ -30,6 +31,7 @@ function toSettingsPage() {
     homePage.style.display = 'none';
     characterPage.style.display = 'none';
     settingsPage.style.display = 'flex';
+    SettingsPage();
 }
 
 navElements.forEach((el) => {

@@ -303,3 +303,69 @@ ul {
     transform: scale(0);
     transition-duration: 0.25s;
 }
+
+.settingspage__window {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 600px;
+    height: 300px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.settingspage__input__wrapper {
+    display: flex;
+}
+
+.settingspage__text {
+    color: #fff;
+    font-size: 40px;
+    width: 75%;
+    text-align: center;
+}
+
+.settingspage__input__wrapper {
+    margin-top: 30px;
+    width: 75%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+.settingspage__input {
+    height: 50px;
+    width: 100%;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    padding-left: 30px;
+    font-size: 30px;
+    border: 0;
+}
+
+#settingspage__btn {
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 0;
+    background-color: #fff;
+    width: 200px;
+    font-size: 30px;
+    color: #fff;
+    background-color: #000;
+    transition-duration: 0.25s;
+    border: 0;
+    cursor: pointer;
+}
+
+#settingspage__btn:hover {
+    opacity: 50%;
+}
+
+#settingspage__btn:active {
+    opacity: 25%;
+}
