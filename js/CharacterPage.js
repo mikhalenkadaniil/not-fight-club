@@ -19,12 +19,12 @@ function avatorCheckboxedInit() {
 
 function losesUpdate() {
     localStorage.getItem('losesCount') ? true : localStorage.setItem('losesCount', 0);
-    loses.textContent = `${localStorage.getItem('losesCount')} loses`
+    loses.textContent = `${localStorage.getItem('losesCount')} loses`;
 }
 
 function winsUpdate() {
     localStorage.getItem('winsCount') ? true : localStorage.setItem('winsCount', 0);
-    wins.textContent = `${localStorage.getItem('winsCount')} wins`
+    wins.textContent = `${localStorage.getItem('winsCount')} wins`;
 }
 
 function nameUpdate() {

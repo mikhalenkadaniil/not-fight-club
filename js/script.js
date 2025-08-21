@@ -1,7 +1,7 @@
-import CharacterPage from "./CharacterPage.js";
 import CreateName from "./CreateName.js";
+import Router from "./Router.js";
 
 addEventListener('DOMContentLoaded', () => {
     CreateName();
-    CharacterPage();
+    Router();
 });
