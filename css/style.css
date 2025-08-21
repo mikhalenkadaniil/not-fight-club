@@ -169,6 +169,7 @@ ul {
     border-radius: 10px;
     color: #fff;
     font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.75);
     cursor: pointer;
 }
 
@@ -178,7 +179,7 @@ ul {
 }
 
 .fightBtn:active {
-    opacity: 100%;
+    opacity: 25%;
 }
 
 .logo {
