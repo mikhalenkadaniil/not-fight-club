@@ -10,7 +10,9 @@ function inputUpdate() {
 }
 
 btn.addEventListener('click', () => {
-    localStorage.setItem('nameCharacter', input.value);
-    input.value = '';
-    inputUpdate();
+    if(input.value) {
+        localStorage.setItem('nameCharacter', input.value);
+        input.value = '';
+        inputUpdate();
+    }
 });
