@@ -144,3 +144,37 @@ ul {
     color: #fff;
     font-size: 50px;
 }
+
+.characterpage {
+    display: none;
+}
+
+.settingspage {
+    display: none;
+}
+
+.homepage {
+    display: flex;
+}
+
+.fightBtn {
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 75px;
+    background-color: inherit;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 30px;
+}
+
+.fightBtn:hover {
+    background-color: #000;
+    opacity: 50%;
+}
+
+.fightBtn:active {
+    opacity: 100%;
+}
