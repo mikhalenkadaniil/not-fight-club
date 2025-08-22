@@ -44,7 +44,7 @@ function toBattlePage() {
     homePage.style.display = 'none';
     characterPage.style.display = 'none';
     settingsPage.style.display = 'none';
-    battlePage.style.display = 'flex';
+    battlePage.style.display = 'grid';
 }
 
 navElements.forEach((el) => {
