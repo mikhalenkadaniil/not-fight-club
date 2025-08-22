@@ -385,8 +385,8 @@ ul {
 .battlepage {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 25px;
-    grid-auto-rows: minmax(150px, auto);
+    gap: 2vh;
+    grid-auto-rows: minmax(10vh, auto);
     place-items: center;
 }
 
@@ -437,7 +437,7 @@ ul {
     background-color: red;
 }
 
-.battlepage__enemy__avator__img {
+.battlepage__avator__img {
     width: 90%;
 }
 
