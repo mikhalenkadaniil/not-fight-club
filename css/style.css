@@ -370,3 +370,7 @@ ul {
 #settingspage__btn:active {
     opacity: 25%;
 }
+
+.settingspage {
+    display: none;
+}
