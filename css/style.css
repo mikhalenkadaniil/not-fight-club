@@ -411,6 +411,10 @@ ul {
 .battlepage__logic__wrapper {
     grid-column: 3 / 5;
     grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .battlepage__log__wrapper {
@@ -444,4 +448,94 @@ ul {
 .battlepage__avator {
     display: flex;
     justify-content: center;
+}
+
+.battlepage__logic__btn {
+    margin: 20px;
+}
+
+.battlepage__logic__forms__midddle__row {
+    width: 2px;
+    border-radius: 50px;
+    height: 100%;
+    background-color: #fff;
+}
+
+.battlepage__logic__text {
+    margin: 20px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.battlepage__logic__forms__wrapper {
+    height: 100%;
+}
+
+.battlepage__logic__attack__option__input {
+    display: none;
+}
+
+.battlepage__logic__forms__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.battlepage__logic__forms__attack__column, .battlepage__logic__forms__defence__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vw;
+}
+
+.battlepage__logic__attack__option__label {
+    padding: 0.5vh;
+    font-size: 30px;
+    color: #fff;
+    border: 2px solid #fff ;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    margin: 2vh;
+}
+
+.battlepage__logic__attack__option {
+    transition-duration: 0.25s;
+}
+
+.battlepage__logic__attack__option:hover {
+    transform: scale(1.1);
+}
+
+.battlepage__logic__attack__option__input:checked + .battlepage__logic__attack__option__label {
+    color: #999;
+    border: 2px solid #999;
+    cursor: default;
+}
+
+.battlepage__logic__btn {
+    width: 150px;
+    height: 75px;
+    font-size: 30px;
+    color: #999;
+    border: 2px solid #999;
+    cursor: default;
+    border-radius: 10px;
+    transition-duration: 0.25s;
+    margin: 2vh;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.battlepage__logic__btn__active {
+    color: #fff;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+.battlepage__logic__btn__active:hover {
+    opacity: 50%;
+}
+
+.battlepage__logic__btn__active:active {
+    opacity: 25%;
 }
