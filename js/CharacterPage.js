@@ -41,7 +41,7 @@ avatorCheckboxes.forEach(el => {
     if (el.checked) {
         const newAvatarID = el.id[el.id.length - 1];
         localStorage.setItem('avator', newAvatarID);
-        stateUpdateAvatar(newAvatarID);
+        localStorage.getItem('battleState') ? stateUpdateAvatar(newAvatarID) : false;
         avatorUpdate();
     }
     });
