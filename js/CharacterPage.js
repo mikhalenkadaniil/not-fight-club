@@ -39,7 +39,9 @@ function avatorUpdate() {
 avatorCheckboxes.forEach(el => {
     el.addEventListener('change', () => {
     if (el.checked) {
-        localStorage.setItem('avator', el.id[el.id.length - 1])
+        const newAvatarID = el.id[el.id.length - 1];
+        localStorage.setItem('avator', newAvatarID);
+        stateUpdateAvatar(newAvatarID);
         avatorUpdate();
     }
     });
@@ -52,3 +54,9 @@ avator.addEventListener('click', () => {
         avatorOptions.style.transform = "scale(1)";
     }
 });
+
+function stateUpdateAvatar(id) {
+    const state = JSON.parse(localStorage.getItem('battleState'));
+    state.player.avatarID = id;
+    localStorage.setItem('battleState', JSON.stringify(state));
+}
