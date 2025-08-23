@@ -1,3 +1,4 @@
+import BattlePage from "./BattlePage.js";
 import CharacterPage from "./CharacterPage.js";
 import SettingsPage from "./SettingsPage.js";
 
@@ -45,6 +46,7 @@ function toBattlePage() {
     characterPage.style.display = 'none';
     settingsPage.style.display = 'none';
     battlePage.style.display = 'grid';
+    BattlePage();
 }
 
 navElements.forEach((el) => {

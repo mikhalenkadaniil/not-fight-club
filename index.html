@@ -109,14 +109,14 @@
         </div>
         <div class="battlepage">
             <div class="battlepage__player__wrapper battlepage__background">
-                <div class="battlepage__name">Daniil</div>
+                <div class="battlepage__name" id="battlepage__player__name"></div>
                 <div class="battlepage__avator">
-                    <img class="battlepage__avator__img" src="./assets/heroes_avator/0.svg" alt="player avator">
+                    <img class="battlepage__avator__img" id="battlepage__player__avatar" src="" alt="player avator">
                 </div>
                 <div class="battlepage__hp-row">
-                    <div class="battlepage__hp-row__current"></div>
+                    <div class="battlepage__hp-row__current" id="battlepage__player__HP"></div>
                 </div>
-                <div class="battlepage__hp">100/150</div>
+                <div class="battlepage__hp" id="battlepage__player__HP__number"></div>
             </div>
             <div class="battlepage__logic__wrapper battlepage__background">
                 <div class="battlepage__logic__text">Choose 1 attack and 2 defence zones</div>
@@ -167,17 +167,18 @@
                         </div>
                     </div>
                 </div>
-                <button class="battlepage__logic__btn battlepage__logic__btn__active">Attack!</button>
+                <!-- <button class="battlepage__logic__btn battlepage__logic__btn__active">Attack!</button> -->
+                <button class="battlepage__logic__btn">Attack!</button>
             </div>
             <div class="battlepage__enemy__wrapper battlepage__background">
-                <div class="battlepage__name">Boar</div>
+                <div class="battlepage__name" id="battlepage__enemy__name"></div>
                 <div class="battlepage__avator">
-                    <img class="battlepage__avator__img" src="./assets/enemys_avator/2.jpg" alt="player avator">
+                    <img class="battlepage__avator__img" src="" alt="player avator" id="battlepage__enemy__avatar">
                 </div>
                 <div class="battlepage__hp-row">
-                    <div class="battlepage__hp-row__current"></div>
+                    <div class="battlepage__hp-row__current" id="battlepage__enemy__HP"></div>
                 </div>
-                <div class="battlepage__hp">100/150</div>
+                <div class="battlepage__hp" id="battlepage__enemy__HP__number"></div>
             </div>
             <div class="battlepage__log__wrapper battlepage__background"></div>
         </div>
