@@ -11,8 +11,16 @@ function inputUpdate() {
 
 btn.addEventListener('click', () => {
     if(input.value) {
-        localStorage.setItem('nameCharacter', input.value);
+        const newName = input.value;
         input.value = '';
+        localStorage.setItem('nameCharacter', newName);
         inputUpdate();
+        localStorage.getItem('battleState') ? stateUpdateName(newName) : false;
     }
 });
+
+function stateUpdateName(name) {
+    const state = JSON.parse(localStorage.getItem('battleState'));
+    state.player.name = name;
+    localStorage.setItem('battleState', JSON.stringify(state));
+}
