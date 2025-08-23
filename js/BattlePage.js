@@ -1,3 +1,5 @@
+import Router from "./Router.js"
+
 const playerName = document.getElementById('battlepage__player__name')
 const playerAvatar = document.getElementById('battlepage__player__avatar')
 const playerHP = document.getElementById('battlepage__player__HP')
@@ -8,6 +10,9 @@ const enemyHP = document.getElementById('battlepage__enemy__HP')
 const enemyHPNumber = document.getElementById('battlepage__enemy__HP__number')
 const battleZoneInputs = document.querySelectorAll('.battlepage__logic__attack__option__input')
 const attackBtn = document.querySelector('.battlepage__logic__btn')
+const battleEndText = document.querySelector('.battleend__text')
+const battleEndBtn = document.querySelector('.battleend__btn')
+const battleEnd = document.querySelector('.battleend')
 
 let attackFlag = false;
 let defenceCounter = 0;
@@ -132,6 +137,18 @@ function recalculateState(log) {
     }
     localStorage.setItem('battleState', JSON.stringify(state));
     dataRender();
+    if (state.enemy.HP === 0 || state.player.HP === 0) End(state.enemy.HP);
+}
+
+function End(enemyHP) {
+    if (enemyHP === 0) {
+        battleEndText.textContent = 'Congratulations! You win!';
+        localStorage.setItem('winsCount', (+localStorage.getItem('winsCount') + 1))
+    } else {
+        battleEndText.textContent = 'You lose =(';
+        localStorage.setItem('losesCount', (+localStorage.getItem('losesCount') + 1))
+    }
+    battleEnd.style.display = 'flex';
 }
 
 function calculateEnemyDamage(log) {
@@ -226,3 +243,9 @@ function getBearTargets() {
         defence: [],
     }
 }
+
+battleEndBtn.addEventListener('click', () => {
+    battleEnd.style.display = 'none';
+    localStorage.setItem('battleState', JSON.stringify(battleStateInit()))
+    Router();
+});
