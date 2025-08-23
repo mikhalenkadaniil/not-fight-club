@@ -6,6 +6,11 @@ const enemyName = document.getElementById('battlepage__enemy__name')
 const enemyAvatar = document.getElementById('battlepage__enemy__avatar')
 const enemyHP = document.getElementById('battlepage__enemy__HP')
 const enemyHPNumber = document.getElementById('battlepage__enemy__HP__number')
+const battleZoneInputs = document.querySelectorAll('.battlepage__logic__attack__option__input')
+const attackBtn = document.querySelector('.battlepage__logic__btn')
+
+let attackFlag = false;
+let defenceCounter = 0;
 
 export default function BattlePage() {
     dataRender();
@@ -69,3 +74,20 @@ function getHPOfEnemy(id) {
     }
     return HP[id];
 }
+
+battleZoneInputs.forEach((el) => {
+    el.addEventListener('change', (event) => {
+        if(event.target.type === "radio") {
+            attackFlag = true;
+        } else {
+            event.target.checked ? defenceCounter++ : defenceCounter--;
+        }
+        if (attackFlag && defenceCounter === 2) {
+            attackBtn.classList.add('battlepage__logic__btn__active');
+            attackBtn.disabled = false;
+        } else {
+            attackBtn.classList.remove('battlepage__logic__btn__active');
+            attackBtn.disabled = true;
+        }
+    });
+});
