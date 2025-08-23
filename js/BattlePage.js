@@ -113,7 +113,52 @@ function attack() {
     }
     state.battleLog.push(attackLog);
     localStorage.setItem('battleState', JSON.stringify(state));
-    console.log(state)
+    recalculateState(attackLog);
+}
+
+function recalculateState(log) {
+    const state = JSON.parse(localStorage.getItem('battleState'));
+    const playerDamage = calculatePlayerDamage(log);
+    const enemyDamage = calculateEnemyDamage(log);
+    if (state.enemy.HP - playerDamage < 1) {
+        state.enemy.HP = 0;
+    } else {
+        state.enemy.HP -= playerDamage;
+    }
+    if (state.player.HP - enemyDamage < 1) {
+        state.player.HP = 0;
+    } else {
+        state.player.HP -= enemyDamage;
+    }
+    localStorage.setItem('battleState', JSON.stringify(state));
+    dataRender();
+}
+
+function calculateEnemyDamage(log) {
+    let enemyDamage = 30;
+    let result = 0;
+    log.enemy.attack.target.forEach((target, i) => {
+        let isBlock = false;
+        if (log.enemy.attack.isCritical[i]) {
+            result += enemyDamage * 1.5;
+            return;
+        }
+        log.player.defence.forEach((el) => {
+            if (el === target) isBlock = true;
+        });
+        if (isBlock) return;
+        result += enemyDamage;
+    });
+    return result;
+}
+
+function calculatePlayerDamage(log) {
+    let playerDamage = 30;
+    if (log.player.attack.isCritical[0]) return (playerDamage * 1.5);
+    log.enemy.defence.forEach((el) => {
+        if (el === log.player.attack.target[0]) playerDamage = 0;
+    });
+    return playerDamage;
 }
 
 function isCritical() {
@@ -165,7 +210,7 @@ function getBoarTargets() {
 function getWolfTargets() {
     return {
         attack: {
-            target: [getRandomNumbers(2, 5)],
+            target: getRandomNumbers(2, 5),
             isCritical: [isCritical(), isCritical()],
         },
         defence: [],
