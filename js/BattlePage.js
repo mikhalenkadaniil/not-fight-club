@@ -57,6 +57,15 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 };
 
+function getRandomNumbers(amount, max) {
+    const numbers = [];
+    while (numbers.length < amount) {
+        const randomInt = getRandomInt(max);
+        if (!numbers.includes(randomInt)) numbers.push(randomInt);
+    }
+    return numbers;
+}
+
 function getNameOfEnemy(id) {
     const NAMES = {
         0: 'Boar',
@@ -91,3 +100,84 @@ battleZoneInputs.forEach((el) => {
         }
     });
 });
+
+attackBtn.addEventListener('click', () => {
+    attack();
+});
+
+function attack() {
+    const state = JSON.parse(localStorage.getItem('battleState'));
+    const attackLog = {
+        player: getPlayerTargets(),
+        enemy: getEnemyTargets(state.enemy.avatarID),
+    }
+    state.battleLog.push(attackLog);
+    localStorage.setItem('battleState', JSON.stringify(state));
+    console.log(state)
+}
+
+function isCritical() {
+    if(getRandomInt(10) > 2) return false;
+    return true;
+}
+
+function getPlayerTargets() {
+    const attacks = [];
+    const defence = [];
+    battleZoneInputs.forEach((el) => {
+        if (el.checked) {
+            if (el.id[0] === 'a') attacks.push(+el.id[el.id.length - 1]);
+            if (el.id[0] === 'd') defence.push(+el.id[el.id.length - 1]);
+        }
+    });
+    return {
+        attack: {
+            target: attacks,
+            isCritical: [isCritical()],
+        },
+        defence: defence,
+    }
+}
+
+function getEnemyTargets(ID) {
+    switch (ID) {
+        case(0):
+            return getBoarTargets();
+        case(1):
+            return getWolfTargets();
+        case(2):
+            return getBearTargets();
+        default:
+            return null;
+    }
+}
+
+function getBoarTargets() {
+    return {
+        attack: {
+            target: [getRandomInt(5)],
+            isCritical: [isCritical()],
+        },
+        defence: getRandomNumbers(2, 5),
+    }
+}
+
+function getWolfTargets() {
+    return {
+        attack: {
+            target: [getRandomNumbers(2, 5)],
+            isCritical: [isCritical(), isCritical()],
+        },
+        defence: [],
+    }
+}
+
+function getBearTargets() {
+    return {
+        attack: {
+            target: [getRandomInt(5)],
+            isCritical: [isCritical()],
+        },
+        defence: [],
+    }
+}
