@@ -43,11 +43,61 @@ function getBattleLogHTML() {
     const state = JSON.parse(localStorage.getItem('battleState'));
     state.battleLog.forEach((attack) => {
         const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack);
+        const enemyAttacks = generateEnemyAttacksLogHTML(state, targets, attack);
         console.log(attack)
         result = playerAttack + result;
+        result = enemyAttacks + result;
     });
     return result;
 }
+
+function generateEnemyAttacksLogHTML(state, targets, attack){
+    let result = '';
+    attack.enemy.attack.target.forEach((att, index) => {
+        const isBlock = isBlocked(att, attack.player.defence);
+        result = `<p class="battlepage__log__text">`;
+        result += `<span class="battleLog__enemyName">${state.enemy.name}</span>
+            attacked
+            <span class="battleLog__playerName">${state.player.name}</span>
+            to
+            <span class="battleLog__target">${targets[att]}</span>`;
+        if (attack.enemy.attack.isCritical[index]) {
+            if(isBlock){
+                result += ` but
+                <span class="battleLog__playerName">${state.player.name}</span>
+                defended 
+                <span class="battleLog__target">${targets[att]}</span>
+                but 
+                <span class="battleLog__enemyName">${state.enemy.name}</span>
+                was very lucky and dealt critical damage
+                <span class="battleLog__damage">${calculateEnemyDamageToLog(attack, index)}</span>
+                `;
+            } else {
+                result += ` and
+                <span class="battleLog__enemyName">${state.enemy.name}</span>
+                was very lucky and dealt critical damage
+                <span class="battleLog__damage">${calculateEnemyDamageToLog(attack, index)}</span>
+                `;
+            }
+        } else {
+            if(isBlock){
+                result += ` but
+                <span class="battleLog__playerName">${state.player.name}</span>
+                defended 
+                <span class="battleLog__target">${targets[att]}</span>
+                `;
+            } else {
+                result += ` and dealt damage
+                <span class="battleLog__damage">${calculateEnemyDamageToLog(attack, index)}</span>
+                `;
+            }
+        }
+        result += `.</p>`;
+    });
+    return result;
+}
+
+
 function genetatePlayerAttackLogHTML(state, targets, attack) {
     const isBlock = isBlocked(attack.player.attack.target[0], attack.enemy.defence);
     let result = `<p class="battlepage__log__text">`;
@@ -65,7 +115,7 @@ function genetatePlayerAttackLogHTML(state, targets, attack) {
                     but 
                     <span class="battleLog__playerName">${state.player.name}</span>
                     was very lucky and dealt critical damage
-                    <span class="battleLog__damage">${calculatePlayerDamage(attack)}</span>
+                    <span class="battleLog__damage">${calculateEnemyDamageToLog(attack)}</span>
                     `;
                 } else {
                     result += ` and
@@ -244,6 +294,13 @@ function calculatePlayerDamage(log) {
         if (el === log.player.attack.target[0]) playerDamage = 0;
     });
     return playerDamage;
+}
+
+function calculateEnemyDamageToLog(log, index) {
+    let enemyDamage = 10;
+    console.log(log, 'log')
+    if (log.enemy.attack.isCritical[index]) return (enemyDamage * 1.5);
+    return enemyDamage;
 }
 
 function isCritical() {
