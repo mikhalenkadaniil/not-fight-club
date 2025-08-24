@@ -199,7 +199,7 @@ function getHPOfEnemy(id) {
     const HP = {
         0: 150,
         1: 100,
-        2: 300,
+        2: 200,
     }
     return HP[id];
 }
