@@ -575,3 +575,29 @@ ul {
     color: #fff;
     font-size: 75px;
 }
+
+.battlepage__log__wrapper {
+    overflow-y: auto;
+    padding-left: 30px;
+}
+
+.battlepage__log__text {
+    font-size: 20px;
+    color: #fff;
+}
+
+.battleLog__playerName {
+    color: #9fff72;
+}
+
+.battleLog__enemyName {
+    color: red;
+}
+
+.battleLog__target {
+    color: rgb(88, 88, 255);
+}
+
+.battleLog__damage {
+    color: rgb(255, 0, 166);
+}

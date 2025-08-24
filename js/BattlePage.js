@@ -13,6 +13,7 @@ const attackBtn = document.querySelector('.battlepage__logic__btn')
 const battleEndText = document.querySelector('.battleend__text')
 const battleEndBtn = document.querySelector('.battleend__btn')
 const battleEnd = document.querySelector('.battleend')
+const battleLog = document.querySelector('.battlepage__log__wrapper')
 
 let attackFlag = false;
 let defenceCounter = 0;
@@ -32,7 +33,71 @@ function dataRender() {
     enemyAvatar.src = `./assets/enemys_avator/${state.enemy.avatarID}.jpg`;
     enemyHP.style.width = `${(state.enemy.HP / state.enemy.maxHP) * 100}%`;
     enemyHPNumber.textContent = `${state.enemy.HP}/${state.enemy.maxHP}`;
+    battleLog.innerHTML = getBattleLogHTML();
 }
+
+function getBattleLogHTML() {
+    const targets = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
+    let result = '';
+    const state = JSON.parse(localStorage.getItem('battleState'));
+    state.battleLog.forEach((attack) => {
+        const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack);
+        console.log(attack)
+        result += playerAttack;
+    });
+    return result;
+}
+function genetatePlayerAttackLogHTML(state, targets, attack) {
+    const isBlock = isBlocked(attack.player.attack.target[0], attack.enemy.defence);
+    let result = `<p class="battlepage__log__text">`;
+    result += `<span class="battleLog__playerName">${state.player.name}</span>
+            attacked
+            <span class="battleLog__enemyName">${state.enemy.name}</span>
+            to
+            <span class="battleLog__target">${targets[attack.player.attack.target[0]]}</span>`;
+            if (attack.player.attack.isCritical[0]) {
+                if(isBlock){
+                    result += ` but
+                    <span class="battleLog__enemyName">${state.enemy.name}</span>
+                    defended 
+                    <span class="battleLog__target">${targets[attack.player.attack.target[0]]}</span>
+                    but 
+                    <span class="battleLog__playerName">${state.player.name}</span>
+                    was very lucky and dealt critical damage
+                    <span class="battleLog__damage">${calculatePlayerDamage(attack)}</span>
+                    `;
+                } else {
+                    result += ` and
+                    <span class="battleLog__playerName">${state.player.name}</span>
+                    was very lucky and dealt critical damage
+                    <span class="battleLog__damage">${calculatePlayerDamage(attack)}</span>
+                    `;
+                }
+            } else {
+                if(isBlock){
+                    result += ` but
+                    <span class="battleLog__enemyName">${state.enemy.name}</span>
+                    defended 
+                    <span class="battleLog__target">${targets[attack.player.attack.target[0]]}</span>
+                    `;
+                } else {
+                    result += ` and dealt damage
+                    <span class="battleLog__damage">${calculatePlayerDamage(attack)}</span>
+                    `;
+                }
+            }
+    result += `.</p>`;
+    return result
+}
+
+function isBlocked(target, blocks) {
+    let result = false;
+    blocks.forEach((block) => {
+        if (block === target) result = true;
+    });
+    return result;
+}
+
 
 function battleStateInit() {
     localStorage.getItem('avator') ? true : localStorage.setItem('avator', 0);
