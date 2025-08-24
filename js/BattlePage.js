@@ -41,9 +41,9 @@ function getBattleLogHTML() {
     const targets = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
     let result = '';
     const state = JSON.parse(localStorage.getItem('battleState'));
-    state.battleLog.forEach((attack) => {
-        const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack);
-        const enemyAttacks = generateEnemyAttacksLogHTML(state, targets, attack);
+    state.battleLog.forEach((attack, attackIndex) => {
+        const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack, attackIndex);
+        const enemyAttacks = generateEnemyAttacksLogHTML(state, targets, attack, attackIndex);
         console.log(attack)
         result = playerAttack + result;
         result = enemyAttacks + result;
@@ -51,11 +51,11 @@ function getBattleLogHTML() {
     return result;
 }
 
-function generateEnemyAttacksLogHTML(state, targets, attack){
+function generateEnemyAttacksLogHTML(state, targets, attack, attackIndex){
     let result = '';
     attack.enemy.attack.target.forEach((att, index) => {
         const isBlock = isBlocked(att, attack.player.defence);
-        result = `<p class="battlepage__log__text">`;
+        result = `<p class="battlepage__log__text">[Attack: ${attackIndex + 1}] `;
         result += `<span class="battleLog__enemyName">${state.enemy.name}</span>
             attacked
             <span class="battleLog__playerName">${state.player.name}</span>
@@ -98,9 +98,9 @@ function generateEnemyAttacksLogHTML(state, targets, attack){
 }
 
 
-function genetatePlayerAttackLogHTML(state, targets, attack) {
+function genetatePlayerAttackLogHTML(state, targets, attack, attackIndex) {
     const isBlock = isBlocked(attack.player.attack.target[0], attack.enemy.defence);
-    let result = `<p class="battlepage__log__text">`;
+    let result = `<p class="battlepage__log__text"> [Attack: ${attackIndex + 1}] `;
     result += `<span class="battleLog__playerName">${state.player.name}</span>
             attacked
             <span class="battleLog__enemyName">${state.enemy.name}</span>
