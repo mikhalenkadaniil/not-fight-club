@@ -94,7 +94,8 @@ function generateEnemyAttacksLogHTML(state, targets, attack, attackIndex){
                 result += ` but
                 <span class="battleLog__playerName">${state.player.name}</span>
                 defended 
-                <span class="battleLog__target">${targets[att]}</span>
+                <span class="battleLog__target">${targets[att]}</span>, 
+                so <span class = "battleLog__enemyName">${state.enemy.name}</span> dealt <span class="battleLog__damage">0</span> damage
                 `;
             } else {
                 result += ` and dealt damage
@@ -139,7 +140,8 @@ function genetatePlayerAttackLogHTML(state, targets, attack, attackIndex) {
                     result += ` but
                     <span class="battleLog__enemyName">${state.enemy.name}</span>
                     defended 
-                    <span class="battleLog__target">${targets[attack.player.attack.target[0]]}</span>
+                    <span class="battleLog__target">${targets[attack.player.attack.target[0]]}</span>,
+                    so <span class = "battleLog__playerName">${state.player.name}</span> dealt <span class="battleLog__damage">0</span> damage
                     `;
                 } else {
                     result += ` and dealt damage
