@@ -315,5 +315,10 @@ function getBearTargets() {
 battleEndBtn.addEventListener('click', () => {
     battleEnd.style.display = 'none';
     localStorage.setItem('battleState', JSON.stringify(battleStateInit()));
+    battleZoneInputs.forEach(el => {
+        if(el.checked) el.checked = !el.checked;
+    });
+    attackFlag = false;
+    defenceCounter = 0;
     Router();
 });
