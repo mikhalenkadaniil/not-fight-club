@@ -55,7 +55,7 @@ function generateEnemyAttacksLogHTML(state, targets, attack, attackIndex){
     let result = '';
     attack.enemy.attack.target.forEach((att, index) => {
         const isBlock = isBlocked(att, attack.player.defence);
-        result = `<p class="battlepage__log__text">[Attack: ${attackIndex + 1}] `;
+        result += `<p class="battlepage__log__text">[Attack: ${attackIndex + 1}] `;
         result += `<span class="battleLog__enemyName">${state.enemy.name}</span>
             attacked
             <span class="battleLog__playerName">${state.player.name}</span>
