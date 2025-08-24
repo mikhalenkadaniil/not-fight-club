@@ -20,6 +20,7 @@ let defenceCounter = 0;
 
 export default function BattlePage() {
     dataRender();
+    attackBtn.disabled = true;
 }
 
 function dataRender() {
@@ -214,10 +215,12 @@ function End(enemyHP) {
         localStorage.setItem('losesCount', (+localStorage.getItem('losesCount') + 1))
     }
     battleEnd.style.display = 'flex';
+    attackBtn.classList.remove('battlepage__logic__btn__active');
+    attackBtn.disabled = true;
 }
 
 function calculateEnemyDamage(log) {
-    let enemyDamage = 30;
+    let enemyDamage = 10;
     let result = 0;
     log.enemy.attack.target.forEach((target, i) => {
         let isBlock = false;
@@ -235,7 +238,7 @@ function calculateEnemyDamage(log) {
 }
 
 function calculatePlayerDamage(log) {
-    let playerDamage = 30;
+    let playerDamage = 10;
     if (log.player.attack.isCritical[0]) return (playerDamage * 1.5);
     log.enemy.defence.forEach((el) => {
         if (el === log.player.attack.target[0]) playerDamage = 0;
@@ -311,6 +314,6 @@ function getBearTargets() {
 
 battleEndBtn.addEventListener('click', () => {
     battleEnd.style.display = 'none';
-    localStorage.setItem('battleState', JSON.stringify(battleStateInit()))
+    localStorage.setItem('battleState', JSON.stringify(battleStateInit()));
     Router();
 });

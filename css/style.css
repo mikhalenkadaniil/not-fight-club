@@ -577,8 +577,13 @@ ul {
 }
 
 .battlepage__log__wrapper {
+    max-height: 22vh;
     overflow-y: auto;
     padding-left: 30px;
+}
+
+.battlepage__log__wrapper::-webkit-scrollbar {
+    width: 0px;
 }
 
 .battlepage__log__text {
