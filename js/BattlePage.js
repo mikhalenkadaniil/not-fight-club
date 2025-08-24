@@ -40,7 +40,7 @@ function dataRender() {
 function getBattleLogHTML() {
     const targets = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
     let result = '';
-    result = `<p class="battlepage__log__text">Добрый день!<br>
+    result = `<p class="battlepage__log__text">Добрый день! <br>
     Для смены аватара героя кликните по иконке героя в разделе "Character". Появится всплывающий список имен аватаров
     <br> Краткое описание механики боя:<br>
     Каждая из сторон имеет шанс нанести критический урон (шанс 30%). Критический урон равен базовому урону х1.5, а также критический урон игнорирует защиту противника<br>
