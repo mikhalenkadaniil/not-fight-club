@@ -44,7 +44,7 @@ function getBattleLogHTML() {
     state.battleLog.forEach((attack) => {
         const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack);
         console.log(attack)
-        result += playerAttack;
+        result = playerAttack + result;
     });
     return result;
 }
