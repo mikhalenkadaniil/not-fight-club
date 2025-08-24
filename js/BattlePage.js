@@ -44,7 +44,6 @@ function getBattleLogHTML() {
     state.battleLog.forEach((attack, attackIndex) => {
         const playerAttack = genetatePlayerAttackLogHTML(state, targets, attack, attackIndex);
         const enemyAttacks = generateEnemyAttacksLogHTML(state, targets, attack, attackIndex);
-        console.log(attack)
         result = playerAttack + result;
         result = enemyAttacks + result;
     });
@@ -298,7 +297,6 @@ function calculatePlayerDamage(log) {
 
 function calculateEnemyDamageToLog(log, index) {
     let enemyDamage = 10;
-    console.log(log, 'log')
     if (log.enemy.attack.isCritical[index]) return (enemyDamage * 1.5);
     return enemyDamage;
 }
